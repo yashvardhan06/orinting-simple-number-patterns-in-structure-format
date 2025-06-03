@@ -1,1 +1,1 @@
-# orinting-simple-number-patterns-in-structure-format
+printing simple nuber patterns in form of pyramid structure 
