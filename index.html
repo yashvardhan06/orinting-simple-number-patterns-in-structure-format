@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Number Pyramid Pattern Generator</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #222;
+    color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 1rem;
+  }
+  .container {
+    background: #333;
+    border-radius: 12px;
+    padding: 2rem 3rem;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 0 15px #4caf50;
+  }
+  h1 {
+    margin-bottom: 1rem;
+    font-weight: 700;
+    color: #4caf50;
+  }
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  input[type="number"] {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: none;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  button {
+    background: #4caf50;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1.2rem;
+    padding: 0.75rem;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  button:hover {
+    background: #45a049;
+  }
+  pre {
+    margin-top: 1.5rem;
+    background: #222;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-family: 'Courier New', Courier, monospace;
+    white-space: pre-wrap;
+    text-align: left;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>Number Pyramid Pattern</h1>
+    <label for="rows">Enter number of rows:</label>
+    <input id="rows" type="number" min="1" max="50" value="5" />
+    <button id="generateBtn">Generate Pattern</button>
+    <pre id="patternOutput" aria-live="polite"></pre>
+  </div>
+
+  <script>
+    // Human-like, commented code to generate a number pyramid pattern
+    document.getElementById('generateBtn').addEventListener('click', () => {
+      const rowsInput = document.getElementById('rows');
+      const output = document.getElementById('patternOutput');
+      const n = parseInt(rowsInput.value, 10);
+
+      // Clear previous output
+      output.textContent = '';
+
+      // Input validation
+      if (isNaN(n) || n < 1 || n > 50) {
+        output.textContent = 'Please enter a valid number between 1 and 50.';
+        return;
+      }
+
+      // This will hold each line of the pattern
+      let patternLines = [];
+
+      // Outer loop: for each row in the pyramid
+      for (let i = 1; i <= n; i++) {
+        // For each row, form a string with spaces and numbers
+        
+        // Calculate leading spaces needed to center align pyramid:
+        // The pyramid width is n (rows)
+        const spacesCount = n - i;
+        const spaces = ' '.repeat(spacesCount);
+
+        // Create the ascending numbers from 1 to i separated by a space
+        let numbers = '';
+        for (let j = 1; j <= i; j++) {
+          numbers += j + ' ';
+        }
+
+        // Combine spaces and numbers and trim trailing space
+        let line = spaces + numbers.trim();
+
+        // Add line to array
+        patternLines.push(line);
+      }
+
+      // Join all lines with newline characters and display
+      output.textContent = patternLines.join('\n');
+    });
+  </script>
+</body>
+</html>
+
